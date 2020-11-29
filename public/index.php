@@ -114,62 +114,6 @@ print_r($lifeManager);
 var_dump(get_class_methods($lifeManager));
 echo "</pre>";
 
-/* 2. Реализуйте класс Db, который обеспечивает реализацию следующих цепочек:
-    echo $db->table('user')->first(3);
-    выведет SELECT * FROM user WHERE id = 3
-    echo $db->table('product')->where('name', 'Alex')->andWhere('session', 123)->andWhere('id', 5)->get();
-    что должно вывести SELECT * FROM product WHERE name = Alex AND session = 123 AND id = 5
-    (конструктор запросов). */
-
-//С ЭТИМ ЗАДАНИЕМ ПОКА ТУГО
-
-class Db
-{
-    public $tableName;
-    public $name;
-    public $session;
-    public $id;
-
-    public function table($tableName)
-    {
-        $this->tableName = $tableName;
-        return $this;
-    }
-    public function getById($id)
-    {
-        $sql = "{$this->tableName} WHERE id = {$id}";
-        return $sql;
-    }
-    public function where ($name, $arr)
-    {
-        //$this->name = $name;
-        foreach ($arr as $value) {
-            $sqlWhere = "WHERE {$name} = {$arr['name']}";
-        }
-        return $sqlWhere;
-    }
-    public function andWhere ($session, $id, $arr)
-    {
-        //$this->session = $session;
-        //$this->id = $id;
-        foreach ($arr as $value) {
-            $sqlAndWhere = "AND {$session} = {$arr['session']} AND {$id} = {$arr['id']}";
-        }
-        return $sqlAndWhere;
-    }
-}
-
-$db = new Db();
-
-$array = [
-    'name' => 'Alex',
-    'session' => 123,
-    'id' => 5
-];
-
-echo $db->table('user')->getById(3);
-echo $db->where('name', $array);
-echo $db->andWhere('session', 'id', $array);
 
 //ОБЩИЙ КОММЕНТАРИЙ ДЛЯ ЗАДАНИЙ № 3, 4, 5.
 
