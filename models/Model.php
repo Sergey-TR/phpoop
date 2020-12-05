@@ -58,18 +58,18 @@ abstract class Model implements IModel
     }
 
     // НЕ УСПЕВАЮ СДАТЬ ДО НАЧАЛА УРОКА
-//    public function update() {
-//        $params = [];
-//        foreach ($this as $key => $value) {
-//            //var_dump($this);
-//            if ($key == 'id') continue;
-//            $params += [$key => $value];
-//
-//        }
-//        var_dump($params);
-//        $id = ['id' => $this->id];
-//        var_dump($id);
-//        $sql = "UPDATE {$this->getTableName()} SET title = :title, price = :price, .... WHERE id = :id";
-//    }
+    public function update($data = []) {
+        var_dump($data);
+        $result = [];
+        foreach ($data as $key => $value) {
+            $result += ["$key = :{$key}" => "$key = :{$key}"];
+        }
+        $keys = array_keys($result);
+        $row = implode(", ", $keys);
+        $id = ['id' => $this->id];
+        $params = array_merge($id, $data);
+        $sql = "UPDATE {$this->getTableName()} SET {$row} WHERE id = :id";
+        Db::getInstance()->execute($sql, $params);
+    }
     abstract public function getTableName();
 }

@@ -39,7 +39,7 @@ $category = new Categories();
 //echo "<pre>";
 //var_dump($product->insert());
 //echo "</pre>";
-
+var_dump($product->getOne(13)->update(['title'=>'mike', 'views'=>'0', 'price'=>'155']));
 //$users = new Users('Fuck', 'dogs', 'ful@mail.ru');
 //echo "<pre>";
 //var_dump($users->insert());
@@ -56,7 +56,10 @@ $category = new Categories();
 
 
 // НЕ УСПЕВАЮ
-//var_dump($users->getOne(3));
-//$users = new Users('Mike', '555', 'mike');
-//$users->update();
+//var_dump($users->getOne(3)->update(['login'=>'mike', 'email'=>'mim@ya.uu']));
+//$users->login = 'mike';
+//var_dump($users);
+//var_dump($users->update());
+
+
 

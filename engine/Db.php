@@ -9,7 +9,7 @@ class Db
         'driver' => 'mysql',
         'host' => 'localhost',
         'login' => 'root',
-        'pass' => '********',
+        'pass' => '13061972',
         'port' => '3306',
         'database' => 'brand',
         'charset' => 'utf8'
@@ -44,6 +44,7 @@ class Db
     public function query ($sql, $params) {
         $stmt = $this->getConnection()->prepare($sql);
         $stmt->execute($params);
+        var_dump($stmt);
         return $stmt;
     }
 
@@ -67,7 +68,7 @@ class Db
     public function queryAll($sql, $params = []) {
             return $this->query($sql, $params)->fetchAll();;
     }
-      //НЕ АБАЙТЕН
+
     public function lastId () {
         return $this->connection->lastInsertId();
     }
