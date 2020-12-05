@@ -7,25 +7,56 @@ use app\models\Orders_Products;
 use app\models\Reviews;
 use app\engine\Db;
 use app\engine\Autoload;
-//use app\models\examples\Product;
+use app\models\Categories;
 
 
+include "../config/config.php";
 include "../engine/Autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
-$product = new Product(new Db());
-echo "<pre>";
-var_dump($product);
-echo "</pre>";
-//$prod = new Product();
+$product = new Product();
+
+$users = new Users();
+
+$orders = new Orders();
+
+$orderProduct = new Orders_Products();
+
+$reviews = new Reviews();
 //echo "<pre>";
-//var_dump($prod);
+//var_dump($reviews->reviewText(2));
 //echo "</pre>";
-$users = new Users(new Db());
-$orders = new Orders(new Db());
-$orderProduct = new Orders_Products(new Db());
-$reviews = new Reviews(new Db());
-var_dump($reviews->reviewText(5));
-$db = new Db();
+$category = new Categories();
+//echo "<pre>";
+//var_dump($product->getOne(25));
+//echo "</pre>";
+//
+//echo "<pre>";
+//var_dump($users->getOne(1));
+//echo "</pre>";
+//$product = new Product('mayka', 'white', '50', '13.png', '1');
+//echo "<pre>";
+//var_dump($product->insert());
+//echo "</pre>";
+
+//$users = new Users('Fuck', 'dogs', 'ful@mail.ru');
+//echo "<pre>";
+//var_dump($users->insert());
+//var_dump($users->delete());
+//var_dump($users);
+//echo "</pre>";
+
+// так работает
+//var_dump($product->getOne(25)->delete());
+
+//так не работает
+//var_dump($users->getOne(20));
+//$users->delete();
+
+
+// НЕ УСПЕВАЮ
+//var_dump($users->getOne(3));
+//$users = new Users('Mike', '555', 'mike');
+//$users->update();
 

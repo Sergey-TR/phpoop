@@ -11,7 +11,7 @@ class Orders_Products extends Model
     public $total;
 
     public function getTableName () {
-        return "Orders_Product";
+        return "orders_product";
     }
 
 }

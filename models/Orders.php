@@ -8,6 +8,6 @@ class Orders extends Model
     public $idUser;
 
     public function getTableName () {
-        return "Orders";
+        return "orders";
     }
 }
