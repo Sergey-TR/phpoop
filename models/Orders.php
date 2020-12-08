@@ -2,12 +2,12 @@
 
 namespace app\models;
 
-class Orders extends Model
+class Orders extends DbModels
 {
     public $id;
     public $idUser;
 
-    public function getTableName () {
+    protected static function getTableName () {
         return "orders";
     }
 }

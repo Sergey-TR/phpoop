@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class Orders_Products extends Model
+class Orders_Products extends DbModels
 
 {
     public $id;
@@ -10,7 +10,9 @@ class Orders_Products extends Model
     public $productId;
     public $total;
 
-    public function getTableName () {
+
+
+    protected static function getTableName () {
         return "orders_product";
     }
 

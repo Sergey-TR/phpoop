@@ -2,15 +2,24 @@
 
 namespace app\models;
 
-class Product extends Model
+use app\engine\Db;
+
+class Product extends DbModels
 {
-    public $id;
-    public $title;
-    public $description;
-    public $price;
-    public $images;
-    public $views;
-    public $categoryId;
+    protected $id;
+    protected $title;
+    protected $description;
+    protected $price;
+    protected $images;
+    protected $categoryId;
+
+    protected $props = [
+        'title' => false,
+        'description' => false,
+        'price' => false,
+        'images' => false,
+        'categoryId' => false
+    ];
 
     public function __construct($title = null, $description = null, $price = null, $images = null, $categoryId = null)
     {
@@ -21,11 +30,12 @@ class Product extends Model
         $this->categoryId = $categoryId;
     }
 
-    public function updateViewProduct ($id) {
-
+    public function getCategory($id) {
+        $sql = "SELECT * FROM {$this->getTableName()} WHERE categoryId = :id";
+        return Db::getInstance()->queryAll($sql, $id);
     }
 
-    public function getTableName () {
+    protected static function getTableName () {
         return "product";
     }
 }

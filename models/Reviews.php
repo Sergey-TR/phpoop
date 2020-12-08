@@ -4,7 +4,7 @@ namespace app\models;
 
 use app\engine\Db;
 
-class Reviews extends Model
+class Reviews extends DbModels
 {
     public $id;
     public $idProduct;
@@ -16,7 +16,7 @@ class Reviews extends Model
         return Db::getInstance()->queryAll($sql, ['id' => $id]);
     }
 
-    public function getTableName () {
+    protected static function getTableName () {
         return "review";
     }
 }

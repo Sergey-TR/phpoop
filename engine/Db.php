@@ -9,7 +9,7 @@ class Db
         'driver' => 'mysql',
         'host' => 'localhost',
         'login' => 'root',
-        'pass' => '13061972',
+        'pass' => '******',
         'port' => '3306',
         'database' => 'brand',
         'charset' => 'utf8'
@@ -43,8 +43,9 @@ class Db
 
     public function query ($sql, $params) {
         $stmt = $this->getConnection()->prepare($sql);
+
         $stmt->execute($params);
-        var_dump($stmt);
+        //var_dump($stmt);
         return $stmt;
     }
 
@@ -55,8 +56,7 @@ class Db
      * получаем объект
      * */
     public function queryObject($sql, $params, $class) {
-        echo "<pre>";
-        $stmt = $this->query($sql, $params);//->fetch();
+        $stmt = $this->query($sql, $params);
         $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $class);
         return $stmt->fetch();
     }
@@ -66,10 +66,18 @@ class Db
     }
 
     public function queryAll($sql, $params = []) {
+        //var_dump($params, $sql);
             return $this->query($sql, $params)->fetchAll();;
     }
 
     public function lastId () {
         return $this->connection->lastInsertId();
+    }
+
+    public function queryLimit($sql, $page) {
+        $stmt = $this->getConnection()->prepare($sql);
+        $stmt->bindParam(':page', $page, \PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(); //TODO вернуть результат Execute
     }
 }

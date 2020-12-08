@@ -2,20 +2,28 @@
 
 
 namespace app\models;
+use app\engine\Db;
 
-
-class Categories extends Model
+class Categories extends DbModels
 {
-    public $id;
-    public $name;
+    protected $id;
+    protected $name;
+
+    protected $props = [
+            'name' => false
+        ];
 
     public function __construct($name = null)
     {
         $this->name = $name;
     }
 
+    public function getCategoryId($name) {
+        $sql = "SELECT id FROM {$this->getTableName()} WHERE name = :name";
+        return Db::getInstance()->queryOne($sql, [':name' => $name]);
+    }
 
-    public function getTableName()
+    protected static function getTableName()
     {
         return "categories";
     }
