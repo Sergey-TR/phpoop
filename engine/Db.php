@@ -9,7 +9,7 @@ class Db
         'driver' => 'mysql',
         'host' => 'localhost',
         'login' => 'root',
-        'pass' => '******',
+        'pass' => '13061972',
         'port' => '3306',
         'database' => 'brand',
         'charset' => 'utf8'
@@ -43,7 +43,6 @@ class Db
 
     public function query ($sql, $params) {
         $stmt = $this->getConnection()->prepare($sql);
-
         $stmt->execute($params);
         //var_dump($stmt);
         return $stmt;
@@ -78,6 +77,6 @@ class Db
         $stmt = $this->getConnection()->prepare($sql);
         $stmt->bindParam(':page', $page, \PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(); //TODO вернуть результат Execute
+        return $stmt->fetchAll();
     }
 }

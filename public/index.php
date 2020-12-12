@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 use app\models\Product;
 use app\models\Users;
 use app\models\Orders;
@@ -15,13 +17,20 @@ include "../engine/Autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
-$controllerName = $_GET['c'] ?: 'product';
-$actionName = $_GET['a'];
+require_once '../vendor/autoload.php';
+
+$loader = new \Twig\Loader\FilesystemLoader('../TwigViews');
+$twig = new \Twig\Environment($loader);
+
+$url = explode('/', $_SERVER['REQUEST_URI']);
+$controllerName = $url[1] ?: 'product';
+$actionName = $url[2];
 
 $controllerClass =  CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
-//var_dump($controllerClass);
 if (class_exists($controllerClass)) {
-    $controller = new $controllerClass();
+
+    $controller = new $controllerClass(new \app\engine\TwigRender($twig));//(new \app\engine\Render());
+
     $controller->runAction($actionName);
 }
 

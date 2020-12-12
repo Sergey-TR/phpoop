@@ -14,11 +14,25 @@ abstract class DbModels extends Model
         return Db::getInstance()->queryObject($sql, ['id' => $id], static::class);
     }
 
-    public static function getAll() {
+    public static function getAll($ids = []) {
+        $where = '';
+        if(!empty($ids)) {
+            $in = implode(', ', $ids);
+            $where = "WHERE id IN ($in)";
+        }
         $tableName = static::getTableName();
-        $sql = "SELECT * FROM {$tableName}";
+        $sql = "SELECT * FROM {$tableName} {$where}";
         return Db::getInstance()->queryAll($sql);
     }
+
+
+//    function getProductImages (array $ids = []) {
+//        if(!empty($ids)) {
+//            $in = implode(', ', $ids);
+//            $where = "WHERE id IN ($in)";
+//        }
+//        return queryAll("SELECT * FROM product_img {$where}");
+//    }
 
     public function insert() {
         $tableName = static::getTableName();

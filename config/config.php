@@ -3,4 +3,5 @@ define('ROOT_DIR', dirname(__DIR__));
 define('DS', DIRECTORY_SEPARATOR);
 define('CONTROLLER_NAMESPACE', "app\\controllers\\");
 define('VIEW_DIR', dirname(__DIR__) . "/views/");
+define('TWIGVIEWS_DIR', dirname(__DIR__) . "/TwigViews/");
 define('PRODUCT_PER_PAGE', 4);

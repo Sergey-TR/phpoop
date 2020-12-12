@@ -7,7 +7,7 @@
 <div class="product-box center">
     <?php foreach ($catalog as $item):?>
         <div class="product">
-            <a href="/?c=product&a=card&id=<?= $item['id'] ?>">
+            <a href="/product/card/&id=<?= $item['id'] ?>">
                 <img class="product__img" src="/img/<?= $item['images'] ?>" alt="photo">
             </a>
             <div class="product__content">

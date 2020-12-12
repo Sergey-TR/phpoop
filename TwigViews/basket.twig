@@ -1,0 +1,39 @@
+<div class="itemHeading">
+    <h2 class="fetured">BASKET</h2>
+    <h2 class="fetured">{{ info }}</h2>
+</div>
+<div class="cart-box center" style="margin-top: 30px;">
+{#    <?php foreach ($basket as $value) { ?>#}
+
+    {% for value in basket %}
+
+    <div class="cartItem">
+        <div class="cartItem_img">
+            <img class="imgs" src="/img/{{ value.product.images }}" alt="photo">
+        </div>
+        <div class="cartItem_name">
+            <p class="cartItem_acount">{{ value.product.title }}</p>
+        </div>
+        <div class="cartItem_price">
+            <span class="cartItem_acount">{{ value.product.price }}</span>
+        </div>
+        <div class="cartItem_qty">
+{#                <span class="qty_inp">{{ value.qty }}</span>#}
+            <form class="changeItem" method="POST" action="/basketAdd/basket">
+
+                <button type="submit" class="qty_btn" value="{{ value.product.id }}" name="minus">-</button>
+                <span class="qty_inp">{{ value.qty }}</span>
+                <button type="submit" class="qty_btn" value="{{ value.product.id }}" name="plus">+</button>
+            </form>
+        </div>
+        <div class="cartItem_total">
+            <span class="qty_qty">{{ value.product.price * value.qty }}</span>
+        </div>
+        <div class="cartItem_clear">
+
+            <button type="submit" class="qty_btn" name="reset" value="{{ value.product.id }}">X</button>
+
+        </div>
+    </div>
+{#    <?php }  ?>#}
+    {% endfor %}

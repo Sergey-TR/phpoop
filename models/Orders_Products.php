@@ -12,6 +12,7 @@ class Orders_Products extends DbModels
 
 
 
+
     protected static function getTableName () {
         return "orders_product";
     }

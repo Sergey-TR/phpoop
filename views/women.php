@@ -9,7 +9,7 @@
 
         <div class="product">
 
-            <a href="/?c=product&a=card&id=<?= $item['id'] ?>">
+            <a href="/product/card/&id=<?= $item['id'] ?>">
 
                 <img class="product__img" src="<?= $imgUrl ?>"
                      alt="photo"></a>

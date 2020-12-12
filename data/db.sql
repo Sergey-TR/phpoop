@@ -85,18 +85,19 @@ create table categories(
 
 drop table if exists basket;
 create table basket (
-    id serial primary key,
-    userId bigint unsigned not null,
-    productId bigint unsigned not null,
-    total INT UNSIGNED DEFAULT 1,
-    foreign key (productId) references product(id),
-    foreign key (userId) references users(id)
+	id serial primary key,
+	userId bigint unsigned not null,
+	productId bigint unsigned not null,
+	total INT UNSIGNED DEFAULT 1,
+	foreign key (productId) references product(id),
+	foreign key (userId) references users(id)
 );
 
 insert into basket (userId, productId, total) values (1, 2, 1);
 
-select * from basket
-                  left join product on product.id =  basket.productId;
+select * from basket 
+	left join product on product.id =  basket.productId; 
+	
 
 insert into categories (name) values ('man'), ('women');
 
@@ -104,4 +105,9 @@ select * FROM review WHERE idProduct = 1;
 
 delete from product where id = 13;
 
-select * from product where id > 0 limit 4;
+select * from product limit 0, 4;
+
+select id from categories where name = "man";
+
+insert into orders (idUser) values (2), (3);
+insert into orders_product (orderId, productId, total) values (1, 2, 1);
