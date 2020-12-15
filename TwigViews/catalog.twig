@@ -18,14 +18,14 @@
                      alt="star">
             </p>
         </div>
-{#        <input type="hidden" value="1" name="quantity">#}
-{#        <button data-id="{{ item.id }}" class="product__add" style="osition: absolute; top: 97px; left: 70px;">Add to Cart</button>#}
-        <form class="form__add" method="POST" action="/basket/addBasket/" class="" style="/*position: absolute; top: 97px; left: 70px;*/">
-            <input type="hidden" value="{{ item.id }}" name="id">
-            <input type="hidden" value="1" name="quantity">
-            <img src="https://raw.githubusercontent.com/Sergey-TR/images/main/cartWhite.png" alt="">
-            <input class="product__add" type="submit" value="Add to Cart">
-        </form>
+        <input type="hidden" value="1" name="quantity">
+        <button data-id="{{ item.id }}" class="product__add" style="">Add to Cart</button>
+{#        <form class="form__add" method="POST" action="/basket/addBasket/" class="" style="/*position: absolute; top: 97px; left: 70px;*/">#}
+{#            <input type="hidden" value="{{ item.id }}" name="id">#}
+{#            <input type="hidden" value="1" name="quantity">#}
+{#            <img src="https://raw.githubusercontent.com/Sergey-TR/images/main/cartWhite.png" alt="">#}
+{#            <input class="product__add" type="submit" value="Add to Cart">#}
+{#        </form>#}
     </div>
  {% endfor %}
 {#    <?php endforeach; ?>#}
@@ -34,30 +34,29 @@
     <a href="/product/catalog/?page={{ page }}" class="button_prod">next</a>
 </div>
 
-{#<script>#}
-{#    let buttons = document.querySelectorAll('.product__add');#}
-{#    buttons.forEach((elem) => {#}
-{#        elem.addEventListener('click', () => {#}
-{#            let id = elem.getAttribute('data-id');#}
-{#            (#}
-{#                async () => {#}
-{#                    const response = await fetch('/basket/add/', {#}
-{#                        method: 'POST',#}
-{#                        headers: {#}
-{#                            'Content-Type': 'application/json'#}
-{#                        },#}
-{#                        body: JSON.stringify({#}
-{#                            id: id,#}
-{#                            total: 1#}
-
-{#                        })#}
-{#                    });#}
-{#                    console.log(response);#}
-{#                    const answer = await response.json();#}
-{#                    console.log(answer);#}
-{#                    document.getElementById('total').innerText = answer.count;#}
-{#                }#}
-{#            )();#}
-{#        })#}
-{#    });#}
-{#</script>#}
+<script>
+    let buttons = document.querySelectorAll('.product__add');
+    buttons.forEach((elem) => {
+        elem.addEventListener('click', () => {
+            let id = elem.getAttribute('data-id');
+            (
+                async () => {
+                    const response = await fetch('/basket/addBasket/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id: id,
+                            total: 1
+                        })
+                    });
+                    console.log(response);
+                     const answer = await response.json();
+                    // console.log(answer);
+                     document.getElementById('total').innerText = answer.total;
+                }
+            )();
+        })
+    });
+</script>

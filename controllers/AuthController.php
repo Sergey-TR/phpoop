@@ -15,7 +15,6 @@ class AuthController extends Controller
 
     public function actionCheckin() {
         $data = $_POST;
-        //var_dump($data);
         $login = $data['login'];
         $email = $data['email'];
         $password = password_hash($data['password'], PASSWORD_BCRYPT);
@@ -25,10 +24,8 @@ class AuthController extends Controller
             echo $this->render('registration', ['errors' => $errors]);
             die();
     }
-        //$user = new Users($login, $password, $email);
-        //var_dump($user);
         (new Users($login, $password, $email))->save();
-        //$user->insert();
+
         header('Location: http://' . $_SERVER['HTTP_HOST']);
     }
 

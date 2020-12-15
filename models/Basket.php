@@ -24,17 +24,15 @@ class Basket extends DbModels
         $this->productId = $productId;
         $this->total = $total;
     }
+// НЕ УЧАСТВУЕТ В РАБОТЕ
+//    public static function getBasket($user_id) {
+//        $sql = "SELECT basket.id basket_id, product.id prod_id, product.title, product.images, product.price, total
+//                FROM `basket`,`product` WHERE `userId` = :session AND basket.productId = product.id";
+//        return Db::getInstance()->queryAll($sql, ['session' => $user_id]);
+//    }
 
-    public static function getBasket($user_id) {
-        $sql = "SELECT basket.id basket_id, product.id prod_id, product.title, product.images, product.price, total 
-                FROM `basket`,`product` WHERE `userId` = :session AND basket.productId = product.id";
-        return Db::getInstance()->queryAll($sql, ['session' => $user_id]);
-    }
-
-    public static function addProductToBasket($itemProduct) {
-        $itemProductId = $itemProduct['id'];
-        $itemProductQuantity = $itemProduct['quantity'];
-
+// ЭТО РАБОТАЕТ С АСИНХРОНОМ
+    public static function addProductToBasket($itemProductId, $itemProductQuantity) {
         if (isset($_SESSION['basketAdd'][$itemProductId])) {
 
             $_SESSION['basketAdd'][$itemProductId] += $itemProductQuantity;
@@ -43,6 +41,19 @@ class Basket extends DbModels
 
         }
     }
+    // ЭТО БЕЗ АСИНХРОНА
+//    public static function addProductToBasket($itemProduct) {
+//        $itemProductId = $itemProduct['id'];
+//        $itemProductQuantity = $itemProduct['quantity'];
+//
+//        if (isset($_SESSION['basketAdd'][$itemProductId])) {
+//
+//            $_SESSION['basketAdd'][$itemProductId] += $itemProductQuantity;
+//        } else {
+//            $_SESSION['basketAdd'][$itemProductId] = $itemProductQuantity;
+//
+//        }
+//    }
 
     public static function viewTotal() {
         $catalog = Product::getAll();

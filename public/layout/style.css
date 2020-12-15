@@ -762,9 +762,9 @@
     border: 1px solid #ffffff;
   }
   .product__add {
-    position: absolute;
-    top: 97px;
-    left: 70px;
+    /*position: absolute;*/
+    /*top: 97px;*/
+    /*left: 70px;*/
     height: 39px;
     width: 100px;
     display: none;

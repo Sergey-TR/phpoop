@@ -1,7 +1,5 @@
-drop database if exists brand;
 create database brand character set utf8 collate utf8_general_ci;
 
-drop table if exists product;
 create table product (
 	id serial primary key,
 	title varchar(255) not null,
@@ -26,7 +24,6 @@ insert into product (title, images, price, description, categoryId) values
 ('beard', '11.png', 200, 'Какое-то описание товара надетое на этом кадре, бородатый мужик', 1),
 ('bearded man', '12.png', 210, 'Какое-то описание товара надетое на этом кадре, переодетый бородач', 1);
 
-drop table if exists users;
 CREATE TABLE `users` (
   `id` serial primary key,
   `login` varchar(255) NOT null unique,
@@ -99,26 +96,4 @@ create table basket (
 	foreign key (userId) references users(id)
 );
 
-insert into basket (userId, productId, total) values (51, 12, 1);
 
-select * from basket 
-	left join product on product.id =  basket.productId; 
-	
-
-insert into categories (name) values ('man'), ('women');
-
-select * FROM review WHERE idProduct = 1;
-
-delete from users where id = 22;
-
-select * from product limit 0, 4;
-
-select id from categories where name = "man";
-
-insert into orders (idUser) values (2), (3);
-insert into orders_product (orderId, productId, total) values (1, 2, 1);
-
-SELECT basket.id basket_id, product.id prod_id, product.title, product.description, product.price, total 
-FROM `basket`,`product` WHERE `userId` = 51 AND basket.productId = product.id;
-
-SELECT count(id) as count FROM basket WHERE `userId`=51;

@@ -14,7 +14,7 @@ class Users extends DbModels
         'password' => false,
         'email' => false
     ];
-    
+
     public static function auth($login, $pass) {
         //var_dump($login, $pass);
         $user = Users::getOneWhere('login', $login);

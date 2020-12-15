@@ -38,12 +38,20 @@ class BasketController extends Controller
 
     public function actionAddBasket()
     {
-;
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $itemProduct = $_POST;
-            Basket::addProductToBasket($itemProduct);
-        }
-        header("Location: ". $_SERVER["HTTP_REFERER"]);
+        $id = json_decode(file_get_contents('php://input'))->id;
+        $quantity = json_decode(file_get_contents('php://input'))->total;
+        Basket::addProductToBasket($id, $quantity);
+        $response = [
+            'total' => Basket::viewTotal()
+        ];
+        echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
+// БУДЕТ НЕ АСИНХРОН
+//        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//            $itemProduct = $_POST;
+//            Basket::addProductToBasket($itemProduct);
+//        }
+//        header("Location: ". $_SERVER["HTTP_REFERER"]);
     }
 
     // actionBasket() отрисовывает "корзину"
