@@ -1,0 +1,33 @@
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 40px;">
+    <form method="post" action="/auth/checkin">
+        <input type="hidden" name="csrf_token" value="dsfhjksdfjksjgfdmlhgkjd">
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <label for="login">LOGIN</label>
+            <input type="text" placeholder="login" name="login" style="margin: 10px;
+                    height: 40px; border: 1px solid #f16d7f; min-width: 300px; outline: #9f9f9f; padding-left: 10px;">
+            <i style="color: #f16d7f">{{ errors.login }}</i>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <label for="email">E-MAIL</label>
+            <input type="email" placeholder="e-mail" name="email" style="margin: 10px;
+                    height: 40px; border: 1px solid #f16d7f; min-width: 300px; outline: #9f9f9f; padding-left: 10px;">
+            <i style="color: #f16d7f">{{ errors.email }}</i>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <label for="password">PASSWORD</label>
+            <input type="password" placeholder="your password" name="password" style="margin: 10px;
+                    height: 40px; border: 1px solid #f16d7f; min-width: 300px; outline: #9f9f9f; padding-left: 10px;">
+            <i style="color: #f16d7f">{{ errors.password }}</i>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <label for="pass_repeat">REPEAT PASSWORD</label>
+            <input type="password" placeholder="repeat password" name="pass_repeat" style="margin: 10px;
+                    height: 40px; border: 1px solid #f16d7f; min-width: 300px; outline: #9f9f9f; padding-left: 10px;">
+            <i style="color: #f16d7f">{{ errors.pass_repeat }}</i>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <button type="submit" style="height: 40px; min-width: 300px; border: 1px solid #f16d7f; margin: 10px;">Отправить</button>
+        </div>
+
+    </form>
+</div>
