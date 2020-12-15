@@ -1,8 +1,10 @@
 <div class="itemHeading">
     <h2 class="fetured">BASKET</h2>
-    <h2 class="fetured">{{ info }}</h2>
+    {% if basket is  empty %}
+    <h2 class="fetured">Ваша корзина пуста</h2>
+    {% endif %}
 </div>
-<div class="cart-box center" style="margin-top: 30px;">
+<div class="cart-box center" style="margin-top: 30px; position: relative;">
 {#    <?php foreach ($basket as $value) { ?>#}
 
     {% for value in basket %}
@@ -18,9 +20,7 @@
             <span class="cartItem_acount">{{ value.product.price }}</span>
         </div>
         <div class="cartItem_qty">
-{#                <span class="qty_inp">{{ value.qty }}</span>#}
-            <form class="changeItem" method="POST" action="/basketAdd/basket">
-
+            <form class="changeItem" method="POST" action="/basket/basket">
                 <button type="submit" class="qty_btn" value="{{ value.product.id }}" name="minus">-</button>
                 <span class="qty_inp">{{ value.qty }}</span>
                 <button type="submit" class="qty_btn" value="{{ value.product.id }}" name="plus">+</button>
@@ -37,3 +37,7 @@
     </div>
 {#    <?php }  ?>#}
     {% endfor %}
+    <button type="submit" style="width: 120px; height: 60px; background-color: #f16d7f; color: white;
+                                 border: none; font-size: 20px; cursor: pointer; margin-top: 15px;
+                                 ">Оформить заказ</button>
+</div>

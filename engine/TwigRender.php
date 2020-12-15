@@ -9,11 +9,13 @@ use app\interfaces\IRenderer;
 class TwigRender implements IRenderer
 {
 
-    public $twig;
+    protected $twig;
 
-    public function __construct($twig)
+    public function __construct()
     {
-        $this->twig = $twig;
+        $loader = new \Twig\Loader\FilesystemLoader('../TwigViews');
+        $this->twig  = new \Twig\Environment($loader);
+        //$this->twig = $twig;
     }
 
 

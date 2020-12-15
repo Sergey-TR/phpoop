@@ -6,7 +6,9 @@ namespace app\controllers;
 use app\engine\Render;
 use app\interfaces\IRenderer;
 use app\engine\TwigRender;
+use app\models\Basket;
 use app\models\Product;
+use app\models\Users;
 
 class Controller
 {
@@ -41,7 +43,12 @@ class Controller
 
         if ($this->useLayout) {
             return $this->renderTemplate("layouts/{$this->layout}", [
-                'header' =>  $this->renderTemplate('header', $params),
+                'header' =>  $this->renderTemplate('header', [
+                    'username' => Users::getName(),
+                    'auth' => Users::isAuth(),
+                    'total' => Basket::viewTotal()
+                    //'total' => Basket::getCountWhere('userId', $_SESSION['id'])
+                ]),
                 'content' => $this->renderTemplate($template, $params)
             ]);
         } else {

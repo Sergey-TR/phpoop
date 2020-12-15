@@ -40,6 +40,12 @@ insert into users (login, password, email) values
 ('User', 'qwerty', 'user@mail.com'),
 ('Nickname', 'ytrewq', 'nick@ya.ru');
 
+insert into users (login, `password`, email) values 
+('Us', 'qwery', 'usr@mail.com'),
+('Nikname', 'yrewq', 'nck@ya.ru');
+
+alter table users drop column hash;
+
 drop table if exists reviews;
 create table review (
 	id serial primary key,
@@ -93,7 +99,7 @@ create table basket (
 	foreign key (userId) references users(id)
 );
 
-insert into basket (userId, productId, total) values (1, 2, 1);
+insert into basket (userId, productId, total) values (51, 12, 1);
 
 select * from basket 
 	left join product on product.id =  basket.productId; 
@@ -103,7 +109,7 @@ insert into categories (name) values ('man'), ('women');
 
 select * FROM review WHERE idProduct = 1;
 
-delete from product where id = 13;
+delete from users where id = 22;
 
 select * from product limit 0, 4;
 
@@ -111,3 +117,8 @@ select id from categories where name = "man";
 
 insert into orders (idUser) values (2), (3);
 insert into orders_product (orderId, productId, total) values (1, 2, 1);
+
+SELECT basket.id basket_id, product.id prod_id, product.title, product.description, product.price, total 
+FROM `basket`,`product` WHERE `userId` = 51 AND basket.productId = product.id;
+
+SELECT count(id) as count FROM basket WHERE `userId`=51;

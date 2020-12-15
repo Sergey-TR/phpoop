@@ -49,6 +49,7 @@ class Db
     }
 
     public function execute($sql, $params = []) {
+        //var_dump($params);
         return $this->query($sql, $params)->rowCount();
     }
     /*
@@ -70,7 +71,7 @@ class Db
     }
 
     public function lastId () {
-        return $this->connection->lastInsertId();
+         $this->connection->lastInsertId();
     }
 
     public function queryLimit($sql, $page) {

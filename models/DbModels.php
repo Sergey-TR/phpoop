@@ -25,29 +25,38 @@ abstract class DbModels extends Model
         return Db::getInstance()->queryAll($sql);
     }
 
-
-//    function getProductImages (array $ids = []) {
-//        if(!empty($ids)) {
-//            $in = implode(', ', $ids);
-//            $where = "WHERE id IN ($in)";
+//    public function insert() {
+//        $params = [];
+//        foreach ($this as $key => $value) {
+//            if ($key == 'id') continue;
+//            $params += [$key => $value];
 //        }
-//        return queryAll("SELECT * FROM product_img {$where}");
+//        $keys = array_keys($params);
+//        $row = implode(", ", $keys);
+//        $placeholderRow = implode(", :", $keys);
+//        $sql = "INSERT INTO `{$this->getTableName()}` ({$row}) VALUES (:{$placeholderRow})";
+//        var_dump($sql);
+//        Db::getInstance()->execute($sql, $params);
+//        $this->id = Db::getInstance()->lastId ();
+//        return $this;
 //    }
+    protected function insert() {
 
-    public function insert() {
-        $tableName = static::getTableName();
         $params = [];
-        foreach ($this as $key => $value) {
-            if($key == 'id' || $key == 'props') continue;
-            $params += [$key => $value];
+        $columns = [];
+
+        foreach ($this->props as $key => $value) {
+            $params[":{$key}"] = $this->$key;
+            $columns[] = "`$key`";
         }
-        $keys = array_keys($params);
-        $row = implode(", ", $keys);
-        $placeholderRow = implode(", :", $keys);
-        $sql = "INSERT INTO `{$tableName}` ({$row}) VALUES (:{$placeholderRow})";
+
+        $columns = implode(", ", $columns);
+        $values = implode(", ", array_keys($params));
+
+        $tableName = static::getTableName();
+        $sql = "INSERT INTO `{$tableName}`({$columns}) VALUES ($values)";
         Db::getInstance()->execute($sql, $params);
-        $this->id = Db::getInstance()->lastId ();
-        return $this;
+        $this->id = Db::getInstance()->lastId();
     }
 
     /* если вызывать $product->getOne(25)->delete(), то работает.
@@ -92,5 +101,20 @@ abstract class DbModels extends Model
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName} LIMIT 0, :page";
         return Db::getInstance()->queryLimit($sql, $page);
+    }
+
+    public static function getOneWhere($name, $value) {
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE `{$name}`=:value";
+        return Db::getInstance()->queryObject($sql, ['value' => $value], static::class);
+
+    }
+
+    public static function getCountWhere($name, $value) {
+//var_dump($name, $value);
+        $tableName = static::getTableName();
+        $sql = "SELECT count(id) as count FROM {$tableName} WHERE `{$name}`= :value";
+//var_dump($sql);
+        return Db::getInstance()->queryOne($sql, ["value" => $value])['count'];
     }
 }

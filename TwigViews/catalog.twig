@@ -8,7 +8,7 @@
     {% for item in catalog %}
 
     <div class="product">
-        <a href="/product/card/&id={{ item.id }}">
+        <a href="/product/card/?id={{ item.id }}">
             <img class="product__img" src="/img/{{ item.images }}" alt="photo">
         </a>
         <div class="product__content">
@@ -18,7 +18,9 @@
                      alt="star">
             </p>
         </div>
-        <form class="form__add" method="POST" action="/basketAdd/addBasket/" class="" style="/*position: absolute; top: 97px; left: 70px;*/">
+{#        <input type="hidden" value="1" name="quantity">#}
+{#        <button data-id="{{ item.id }}" class="product__add" style="osition: absolute; top: 97px; left: 70px;">Add to Cart</button>#}
+        <form class="form__add" method="POST" action="/basket/addBasket/" class="" style="/*position: absolute; top: 97px; left: 70px;*/">
             <input type="hidden" value="{{ item.id }}" name="id">
             <input type="hidden" value="1" name="quantity">
             <img src="https://raw.githubusercontent.com/Sergey-TR/images/main/cartWhite.png" alt="">
@@ -29,5 +31,33 @@
 {#    <?php endforeach; ?>#}
 </div>
 <div class="prod_bnt">
-    <a href="/product/catalog/&page={{ page }}" class="button_prod">next</a>
+    <a href="/product/catalog/?page={{ page }}" class="button_prod">next</a>
 </div>
+
+{#<script>#}
+{#    let buttons = document.querySelectorAll('.product__add');#}
+{#    buttons.forEach((elem) => {#}
+{#        elem.addEventListener('click', () => {#}
+{#            let id = elem.getAttribute('data-id');#}
+{#            (#}
+{#                async () => {#}
+{#                    const response = await fetch('/basket/add/', {#}
+{#                        method: 'POST',#}
+{#                        headers: {#}
+{#                            'Content-Type': 'application/json'#}
+{#                        },#}
+{#                        body: JSON.stringify({#}
+{#                            id: id,#}
+{#                            total: 1#}
+
+{#                        })#}
+{#                    });#}
+{#                    console.log(response);#}
+{#                    const answer = await response.json();#}
+{#                    console.log(answer);#}
+{#                    document.getElementById('total').innerText = answer.count;#}
+{#                }#}
+{#            )();#}
+{#        })#}
+{#    });#}
+{#</script>#}

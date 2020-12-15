@@ -32,25 +32,32 @@
             <div class="header__right_cart">
                 <div class="cart__total">
 
-                    <span class="cart__total_span">{{ total }}</span>
+                    <span class="cart__total_span" id="total">{{ total }}</span>
 
-                    <a href="/basketAdd/basket" class="cart__total_btn"></a>
+                    <a href="/basket/basket" class="cart__total_btn"></a>
                 </div>
             </div>
             <div class="my_account_btn">
                 <details class="my_account_det">
-                    <summary class="my_account_sum">My Account</summary>
+                    <summary class="my_account_sum">
+                        {% if auth %}
+                        {{ username }}
+                        {% else %}
+                        My Account
+                        {% endif %}
+                    </summary>
                     <div class="my_account_checkout">
-                        <!--                        --><?php //if (array_get($_SESSION, 'user')) : ?>
-                        <!--                            <p style="text-align: center; padding: 10px; font-size: 20px;-->
-                        <!--							font-weight: bold;-->
-                        <!--							color: #f16d7f;">-->
-                        <!--                                --><?//= $_SESSION['user']['login']; ?><!-- </p>-->
-                        <!--                            <a href="/logout" class="my_account_check">LOG OUT</a>-->
-                        <!--                        --><?php //else : ?>
-                        <!--                            <a href="/login" class="my_account_check">LOG IN</a>-->
-                        <!--                        --><?php //endif; ?>
-                        <a href="/registration" class="my_account_cart">Registration</a>
+                       {% if auth %}
+
+                           <p style="text-align: center; padding: 10px; font-size: 20px;
+                        							font-weight: bold;
+                        							color: #f16d7f;">
+                               {{ username }}</p>
+                           <a href="/auth/logout" class="my_account_check">LOG OUT</a>
+                        {% else %}
+                            <a href="/auth/login" class="my_account_check">LOG IN</a>
+                        {% endif %}
+                        <a href="/auth/registration" class="my_account_cart">Registration</a>
                     </div>
                 </details>
             </div>
@@ -62,10 +69,10 @@
         <ul class="menu center">
             <li class="menu__list"><a href="/" class="menu__link">Home</a></li>
             <!--            <li class="menu__list"><a href="/?c=product&a=catalog&page=1" class="menu__link">Catalog</a></li>-->
-            <li class="menu__list"><a href="/product/catalog/&page=1" class="menu__link">Catalog</a></li>
-            <li class="menu__list"><a href="/product/category/&name=women"class= "menu__link">Women</a></li>
-            <li class="menu__list"><a href="/product/category/&name=man" class="menu__link">Man</a></li>
-            <li class="menu__list"><a href="/basketAdd/basket" class="menu__link">Basket</a></li>
+            <li class="menu__list"><a href="/product/catalog/" class="menu__link">Catalog</a></li>
+            <li class="menu__list"><a href="/product/category/?name=women"class= "menu__link">Women</a></li>
+            <li class="menu__list"><a href="/product/category/?name=man" class="menu__link">Man</a></li>
+            <li class="menu__list"><a href="/basket/basket" class="menu__link">Basket</a></li>
             <li class="menu__list"><a href="#" class="menu__link">Featured</a></li>
             <li class="menu__list"><a href="#" class="menu__link">Hot Deals</a></li>
             <!--            --><?php //foreach ($menu as $nav) { ?>
