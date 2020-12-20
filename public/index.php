@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+//var_dump($_SESSION);
 use app\models\Product;
 use app\models\Users;
 use app\models\Orders;

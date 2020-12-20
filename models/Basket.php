@@ -5,55 +5,38 @@ namespace app\models;
 use app\engine\Db;
 use app\models\Product;
 
+
 class Basket extends DbModels
 {
-    public $id;
-    public $userId;
-    public $productId;
-    public $total;
+    public $basket = [];
 
-    protected $props = [
-        'userId' => false,
-        'productId' => false,
-        'total' => false
-    ];
 
-    public function __construct($userId = null, $productId = null, $total = null)
+    public function __construct($basket = [])
     {
-        $this->userId = $userId;
-        $this->productId = $productId;
-        $this->total = $total;
+        $this->basket = $basket;
     }
-// НЕ УЧАСТВУЕТ В РАБОТЕ
-//    public static function getBasket($user_id) {
-//        $sql = "SELECT basket.id basket_id, product.id prod_id, product.title, product.images, product.price, total
-//                FROM `basket`,`product` WHERE `userId` = :session AND basket.productId = product.id";
-//        return Db::getInstance()->queryAll($sql, ['session' => $user_id]);
-//    }
 
-// ЭТО РАБОТАЕТ С АСИНХРОНОМ
-    public static function addProductToBasket($itemProductId, $itemProductQuantity) {
-        if (isset($_SESSION['basketAdd'][$itemProductId])) {
-
-            $_SESSION['basketAdd'][$itemProductId] += $itemProductQuantity;
+    public static function addProductToBasket($id, $total) {
+        if (isset($_SESSION['basketAdd'][$id])) {
+            $_SESSION['basketAdd'][$id] += $total;
         } else {
-            $_SESSION['basketAdd'][$itemProductId] = $itemProductQuantity;
-
+            $_SESSION['basketAdd'][$id] = $total;
         }
     }
-    // ЭТО БЕЗ АСИНХРОНА
-//    public static function addProductToBasket($itemProduct) {
-//        $itemProductId = $itemProduct['id'];
-//        $itemProductQuantity = $itemProduct['quantity'];
-//
-//        if (isset($_SESSION['basketAdd'][$itemProductId])) {
-//
-//            $_SESSION['basketAdd'][$itemProductId] += $itemProductQuantity;
-//        } else {
-//            $_SESSION['basketAdd'][$itemProductId] = $itemProductQuantity;
-//
-//        }
-//    }
+
+    public static function getBasket() {
+        $itemProductIds = array_keys($_SESSION['basketAdd']);
+        $itemProducts = Product::getAll($itemProductIds);
+        foreach($itemProducts as $item) {
+            $basket [] = [
+                'product' => $item,
+                'qty' => $_SESSION['basketAdd'][$item['id']],
+                'summ' => $item['price'] * $_SESSION['basketAdd'][$item['id']]
+            ];
+
+        }
+        return $basket;
+    }
 
     public static function viewTotal() {
         $catalog = Product::getAll();
@@ -75,10 +58,22 @@ class Basket extends DbModels
             if($_SESSION['basketAdd'][$idChange] == 0 ) {
                 unset($_SESSION['basketAdd'][$idChange]);
                 if(empty($_SESSION['basketAdd'])) {
-                    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/product/catalog/&page=1');
+                    header('Location: http://' . $_SERVER['HTTP_HOST']);
                 }
             }
         }
+    }
+
+    public static function deleteProductFromBasket($id) {
+        unset($_SESSION['basketAdd'][$id]);
+    }
+
+    public static function getSumm($basket) {
+        $totalSumm = (int)"";
+        foreach ($basket as $key) {
+            $totalSumm += $key['summ'];
+        }
+        return $totalSumm;
     }
 
     protected static function getTableName () {

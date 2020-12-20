@@ -7,6 +7,7 @@ use app\engine\Render;
 use app\interfaces\IRenderer;
 use app\engine\TwigRender;
 use app\models\Basket;
+use app\models\Orders;
 use app\models\Product;
 use app\models\Users;
 
@@ -46,8 +47,8 @@ class Controller
                 'header' =>  $this->renderTemplate('header', [
                     'username' => Users::getName(),
                     'auth' => Users::isAuth(),
-                    'total' => Basket::viewTotal()
-                    //'total' => Basket::getCountWhere('userId', $_SESSION['id'])
+                    'total' => Basket::viewTotal(),
+                    'orders' => Orders::ordersUser($_SESSION['id'])
                 ]),
                 'content' => $this->renderTemplate($template, $params)
             ]);

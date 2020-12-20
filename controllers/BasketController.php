@@ -12,72 +12,31 @@ use app\engine\Request;
 
 class BasketController extends Controller
 {
-//    public function actionIndex() {
-//        //var_dump($_SESSION['id']);
-//        echo $this->render('basket', [
-//            'basket' => Basket::getBasket($_SESSION['id'])
-//        ]);
-//    }
-//
-//    public function actionAdd() {
-//        //$id = json_decode(file_get_contents('php://input'))->id;
-//        //$total = json_decode(file_get_contents('php://input'))->total;
-//        $id = (new Request())->getParams()['id'];
-//var_dump($id);
-//
-//        (new Basket($_SESSION['id'], $id))->save();
-//
-//        $response = [
-//            'total' => Basket::getCountWhere('userId', $_SESSION['id'])
-//        ];
-//
-//        echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-//
-//    }
-    public  $basket = [];
 
     public function actionAddBasket()
     {
-        $id = json_decode(file_get_contents('php://input'))->id;
-        $quantity = json_decode(file_get_contents('php://input'))->total;
-        Basket::addProductToBasket($id, $quantity);
+        $id = (new Request())->getParams()['id'];
+        $total = (new Request())->getParams()['total'];
+        Basket::addProductToBasket($id, $total);
         $response = [
-            'total' => Basket::viewTotal()
+            'total' => Basket::viewTotal(),
         ];
         echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
-// БУДЕТ НЕ АСИНХРОН
-//        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//            $itemProduct = $_POST;
-//            Basket::addProductToBasket($itemProduct);
-//        }
-//        header("Location: ". $_SERVER["HTTP_REFERER"]);
     }
 
-    // actionBasket() отрисовывает "корзину"
-
     public function actionBasket() {
-
-        // меняем количество товара в корзине кнопкам + или -
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $change = $_POST;
             Basket::changeCountProduct($change);
+            $basket = Basket::getBasket();
         }
         if (!empty($_SESSION['basketAdd'])) {
-
-            $itemProductIds = array_keys($_SESSION['basketAdd']);
-
-            $itemProducts = Product::getAll($itemProductIds);
-
-            foreach($itemProducts as $item) {
-                $this->basket [] = [
-                    'product' => $item,
-                    'qty' => $_SESSION['basketAdd'][$item['id']]
-                ];
-            }
+            $basket = Basket::getBasket();
             echo $this->render('basket', [
-                'basket' => $this->basket,
+                'basket' => $basket,
+                'totalSumm' => Basket::getSumm($basket)
             ]);
         } else {
             echo $this->render('basket', [
@@ -85,4 +44,17 @@ class BasketController extends Controller
             ]);
         }
     }
+
+    public function actionDeleteProductBasket() {
+        $id = (new Request())->getParams()['id'];
+        Basket::deleteProductFromBasket($id);
+        $basket = Basket::getBasket();
+        $response = [
+            'total' => Basket::viewTotal(),
+            'totalSumm' => Basket::getSumm($basket),
+        ];
+        echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK);
+        //header('Location: http://' . $_SERVER['HTTP_SELF']);
+    }
+
 }

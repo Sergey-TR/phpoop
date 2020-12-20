@@ -6,6 +6,7 @@ namespace app\controllers;
 use app\engine\Validator;
 use app\models\Users;
 use app\helpers\Helper;
+use app\engine\Session;
 
 class AuthController extends Controller
 {
@@ -26,26 +27,23 @@ class AuthController extends Controller
     }
         (new Users($login, $password, $email))->save();
 
-        header('Location: http://' . $_SERVER['HTTP_HOST']);
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/auth/login');
     }
 
     public function actionLogin() {
+        //$back =isset($_GET['back']) ? $_GET['back'] : '/';
         echo $this->render('login');
     }
 
     public function actionIn() {
-        $postIn = $_POST;
         $login = $_POST['login'];
         $pass = $_POST['password'];
-//        $helper = new Helper();
-//        if(!$helper->array_get($postIn, 'login') || !$helper->array_get($postIn, 'password')){
-//            $errorMsg = 'Необходимо передать логин и пароль';
-//            echo $this->render('login', ['error' => $errorMsg]);
-//        }
-
+        //$back = (isset($_GET['back']) ? $_GET['back'] : '/') . 'basket';
+        //var_dump($back);
         if (Users::auth($login, $pass)) {
             header('Location: http://' . $_SERVER['HTTP_HOST']);
-        } else {
+        }
+        else {
             $errorMsg = 'Такой комбинации логин и пароль нет.';
             echo $this->render('login', ['error' => $errorMsg]);
         }
@@ -53,7 +51,11 @@ class AuthController extends Controller
     }
 
     public function actionLogout() {
-        session_destroy();
+        $session = new Session();
+        $session->regenerateSession();
+        $session->destroySession();
+//        unset($_SESSION['login']);
+//        unset($_SESSION['id']);
         header("Location:" . $_SERVER['HTTP_REFERER']);
         die();
     }

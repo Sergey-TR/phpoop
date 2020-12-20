@@ -34,29 +34,3 @@
     <a href="/product/catalog/?page={{ page }}" class="button_prod">next</a>
 </div>
 
-<script>
-    let buttons = document.querySelectorAll('.product__add');
-    buttons.forEach((elem) => {
-        elem.addEventListener('click', () => {
-            let id = elem.getAttribute('data-id');
-            (
-                async () => {
-                    const response = await fetch('/basket/addBasket/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            id: id,
-                            total: 1
-                        })
-                    });
-                    console.log(response);
-                     const answer = await response.json();
-                    // console.log(answer);
-                     document.getElementById('total').innerText = answer.total;
-                }
-            )();
-        })
-    });
-</script>

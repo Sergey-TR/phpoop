@@ -17,12 +17,14 @@
                          alt="star">
                 </p>
             </div>
-            <form class="form__add" method="POST" action="/basketAdd/addBasket/" class="" style="/*position: absolute; top: 97px; left: 70px;*/">
-                <input type="hidden" value="{{ item.id }}" name="id">
-                <input type="hidden" value="1" name="quantity">
-                <img src="https://raw.githubusercontent.com/Sergey-TR/images/main/cartWhite.png" alt="">
-                <input class="product__add" type="submit" value="Add to Cart">
-            </form>
+            <input type="hidden" value="1" name="quantity">
+            <button data-id="{{ item.id }}" class="product__add" style="">Add to Cart</button>
+{#            <form class="form__add" method="POST" action="/basketAdd/addBasket/" class="" style="/*position: absolute; top: 97px; left: 70px;*/">#}
+{#                <input type="hidden" value="{{ item.id }}" name="id">#}
+{#                <input type="hidden" value="1" name="quantity">#}
+{#                <img src="https://raw.githubusercontent.com/Sergey-TR/images/main/cartWhite.png" alt="">#}
+{#                <input class="product__add" type="submit" value="Add to Cart">#}
+{#            </form>#}
         </div>
     {% endfor %}
 </div>

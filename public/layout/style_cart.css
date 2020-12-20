@@ -98,7 +98,7 @@
     top: 36px;
     left: 10px;
   }
-  .qty_btn {
+  .qty_btn, .clear_btn {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -114,6 +114,14 @@
   .qty_btn:active {
     box-shadow: none;
   }
+
+.clear_btn:hover {
+  box-shadow: 1px 1px 1px 1px darkgrey;
+  cursor: pointer;
+}
+.clear_btn:active {
+  box-shadow: none;
+}
   .qty {
     width: 30px;
     height: 30px;
@@ -127,11 +135,11 @@
   }
   .qty_inp {
     height: 30px;
-    width: 60px;
+    width: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 5px;
   }
   .changeItem {
     display: flex;

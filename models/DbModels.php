@@ -15,10 +15,13 @@ abstract class DbModels extends Model
     }
 
     public static function getAll($ids = []) {
+        //var_dump($ids);
         $where = '';
         if(!empty($ids)) {
-            $in = implode(', ', $ids);
+            $in = ltrim(implode(', ', $ids), ",");
+            //var_dump($in);
             $where = "WHERE id IN ($in)";
+            //var_dump($where);
         }
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName} {$where}";
@@ -55,8 +58,10 @@ abstract class DbModels extends Model
 
         $tableName = static::getTableName();
         $sql = "INSERT INTO `{$tableName}`({$columns}) VALUES ($values)";
+        //var_dump($sql);
         Db::getInstance()->execute($sql, $params);
         $this->id = Db::getInstance()->lastId();
+        return $this->id;
     }
 
     /* если вызывать $product->getOne(25)->delete(), то работает.
@@ -91,7 +96,8 @@ abstract class DbModels extends Model
 
     public function save() {
         if(!($this->id)) {
-            $this->insert();
+            $id = $this->insert();
+            return $id;
         } else {
             $this->update();
         }

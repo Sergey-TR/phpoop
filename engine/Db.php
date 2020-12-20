@@ -71,7 +71,7 @@ class Db
     }
 
     public function lastId () {
-         $this->connection->lastInsertId();
+         return $this->connection->lastInsertId();
     }
 
     public function queryLimit($sql, $page) {
