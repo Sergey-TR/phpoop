@@ -3,11 +3,12 @@
 
 namespace app\controllers;
 
-use app\models\Orders_Products;
-use app\models\Orders;
-use app\models\DbModels;
-use app\models\Product;
-use app\models\Basket;
+use app\models\entities\Orders_Products;
+use app\models\entities\Orders;
+use app\models\repositories\BasketRepository;
+use app\models\Repository;
+use app\models\entities\Product;
+use app\models\entities\Basket;
 use app\engine\Request;
 
 class BasketController extends Controller
@@ -17,9 +18,9 @@ class BasketController extends Controller
     {
         $id = (new Request())->getParams()['id'];
         $total = (new Request())->getParams()['total'];
-        Basket::addProductToBasket($id, $total);
+        (new BasketRepository())->addProductToBasket($id, $total); //Basket::addProductToBasket($id, $total);
         $response = [
-            'total' => Basket::viewTotal(),
+            'total' => (new BasketRepository())->viewTotal() //Basket::viewTotal(),
         ];
         echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
@@ -29,14 +30,14 @@ class BasketController extends Controller
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $change = $_POST;
-            Basket::changeCountProduct($change);
-            $basket = Basket::getBasket();
+            (new BasketRepository())->changeCountProduct($change); //Basket::changeCountProduct($change);
+            $basket = (new BasketRepository())->getBasket(); //Basket::getBasket();
         }
         if (!empty($_SESSION['basketAdd'])) {
-            $basket = Basket::getBasket();
+            $basket = (new BasketRepository())->getBasket(); //Basket::getBasket();
             echo $this->render('basket', [
                 'basket' => $basket,
-                'totalSumm' => Basket::getSumm($basket)
+                'totalSumm' => (new BasketRepository())->getSumm($basket) //Basket::getSumm($basket)
             ]);
         } else {
             echo $this->render('basket', [
@@ -47,11 +48,11 @@ class BasketController extends Controller
 
     public function actionDeleteProductBasket() {
         $id = (new Request())->getParams()['id'];
-        Basket::deleteProductFromBasket($id);
-        $basket = Basket::getBasket();
+        (new BasketRepository())->deleteProductFromBasket($id); //Basket::deleteProductFromBasket($id);
+        $basket = (new BasketRepository())->getBasket();//Basket::getBasket();
         $response = [
-            'total' => Basket::viewTotal(),
-            'totalSumm' => Basket::getSumm($basket),
+            'total' => (new BasketRepository())->viewTotal(), //Basket::viewTotal(),
+            'totalSumm' => (new BasketRepository())->getSumm($basket) //Basket::getSumm($basket),
         ];
         echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK);
         //header('Location: http://' . $_SERVER['HTTP_SELF']);

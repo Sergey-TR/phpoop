@@ -4,7 +4,8 @@
 namespace app\controllers;
 
 use app\engine\Validator;
-use app\models\Users;
+use app\models\entities\Users;
+use app\models\repositories\UserRepository;
 use app\helpers\Helper;
 use app\engine\Session;
 
@@ -25,7 +26,8 @@ class AuthController extends Controller
             echo $this->render('registration', ['errors' => $errors]);
             die();
     }
-        (new Users($login, $password, $email))->save();
+        $user = new Users($login, $password, $email);
+        (new UserRepository())->save($user);
 
         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/auth/login');
     }
@@ -40,7 +42,7 @@ class AuthController extends Controller
         $pass = $_POST['password'];
         //$back = (isset($_GET['back']) ? $_GET['back'] : '/') . 'basket';
         //var_dump($back);
-        if (Users::auth($login, $pass)) {
+        if ((new UserRepository())->auth($login, $pass)) {
             header('Location: http://' . $_SERVER['HTTP_HOST']);
         }
         else {

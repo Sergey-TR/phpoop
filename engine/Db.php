@@ -75,9 +75,14 @@ class Db
     }
 
     public function queryLimit($sql, $page) {
+       // var_dump($sql, $page);
         $stmt = $this->getConnection()->prepare($sql);
+        //var_dump($stmt);
         $stmt->bindParam(':page', $page, \PDO::PARAM_INT);
+        //var_dump($stmt);
         $stmt->execute();
+        //var_dump($stmt);
+        //var_dump($stmt->fetchAll());
         return $stmt->fetchAll();
     }
 }
