@@ -29,9 +29,11 @@ class OrdersController extends Controller
          $userName = $post['name'];
          $phone = $post['phone'];
          $comment = $post['comment'];
+         $status = 'new';
 
-        $new = new Orders($idUser, $userName, $phone, $comment);// -> save();
-        $id = (new OrdersRepository()) ->save($new);
+        $new = new Orders($idUser, $userName, $phone, $comment, $status);// -> save();
+        //var_dump($new);
+        $id = (new OrdersRepository())->save($new);
         if(!$id) {
             throw new \Exception("Не удалось офрмить заказ");
         }
@@ -56,6 +58,38 @@ for ($i = 0; $i < count($idOrder); $i++) {
     //$param ->save();
 }
         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/basket/basket/');
+    }
+
+
+    // А КАК СТАТУС ПОМЕНЯТЬ ЗАПУТАЛСЯ
+    public function actionChangeStatusOrders() {
+//        //var_dump($_POST);
+        foreach ($_POST as $key => $value) {
+            $id = $key;
+            $status = $value;
+        }
+        $order = (new OrdersRepository())->getOne($id);
+//        //var_dump($order);
+//        //$status = $_POST['status'];
+//        $idUser = $userName = $phone = $comment = "";
+//        $entity = [];
+//        foreach ($order as $key => $value) {
+//            if($key == 'status') {
+//
+//            }
+//        }
+////var_dump($status, $id);
+//        $changeStatus = new Orders($idUser, $userName, $phone, $comment, $status);
+//       // var_dump($changeStatus);
+////        $entity = [];
+////        foreach ($changeStatus as $key => $value) {
+////            if($key == 'id') {
+////
+////            }
+////            var_dump($key);
+////        }
+        (new OrdersRepository())->save($order);
+////header('Location: http://' . $_SERVER['HTTP_REFERER']);
     }
 
 }

@@ -49,8 +49,10 @@ abstract class Repository implements IModel
         $tableName = $this->getTableName();
         $sql = "INSERT INTO `{$tableName}`({$columns}) VALUES ($values)";
         //var_dump($sql);
+        //var_dump($params);
         Db::getInstance()->execute($sql, $params);
         $entity->id = Db::getInstance()->lastId();
+        //var_dump($entity->id);
         return $entity->id;
     }
 
@@ -77,10 +79,12 @@ abstract class Repository implements IModel
         $params = array_merge($id, $change);
         $tableName = $this->getTableName();
         $sql = "UPDATE {$tableName} SET {$row} WHERE id = :id";
+        //var_dump($sql);
         Db::getInstance()->execute($sql, $params);
     }
 
     public function save($entity) {
+       // var_dump($entity);
         if (is_null($entity->id)) {
             $id = $this->insert($entity);
             return $id;

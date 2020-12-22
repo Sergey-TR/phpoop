@@ -61,6 +61,7 @@ class BasketRepository extends Repository
 
     public function deleteProductFromBasket($id) {
         unset($_SESSION['basketAdd'][$id]);
+        //header('Location: http://' . $_SERVER['HTTP_HOST'] . '/basket/basket');
     }
 
     public function getSumm($basket) {

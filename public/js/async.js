@@ -41,7 +41,7 @@ let clearBtn = document.querySelectorAll('.clear_btn');
                     })
                 });
                 const answer = await response.json();
-                location.replace('http://php.oop/basket/basket/');
+                //location.replace('http://php.oop/basket/basket/');
                 document.getElementById(id).remove();
                 document.getElementById('total').innerText = answer.total;
                 document.getElementById('totalSumm').innerText = answer.totalSumm;

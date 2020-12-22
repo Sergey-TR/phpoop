@@ -11,9 +11,11 @@ class UserRepository extends Repository
 {
     public function auth($login, $pass) {
         $user = (new UserRepository())->getOneWhere('login', $login); //Users::getOneWhere('login', $login);
+        //var_dump($_SESSION['login']);
         if (password_verify($pass, $user->password)) {
             $_SESSION['login'] = $login;
             $_SESSION['id'] = $user->id;
+            //var_dump($_SESSION['login']);
             return true;
         } else {
             return false;

@@ -12,20 +12,23 @@ class Orders extends Model
     public $userName;
     public $phone;
     public $comment;
+    //public $status;
 
     protected $props = [
         'idUser' => false,
         'userName' => false,
         'phone' => false,
-        'comment' => false
+        'comment' => false,
+        //'status' => false
     ];
 
-    public function __construct($idUser = null, $userName = null, $phone = null, $comment = null)
+    public function __construct($idUser = null, $userName = null, $phone = null, $comment = null)//, $status = null)
     {
         $this->idUser = $idUser;
         $this->userName = $userName;
         $this->phone = $phone;
         $this->comment = $comment;
+        //$this->status = $status;
     }
 
 

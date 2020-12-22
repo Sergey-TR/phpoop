@@ -49,13 +49,13 @@ class BasketController extends Controller
     public function actionDeleteProductBasket() {
         $id = (new Request())->getParams()['id'];
         (new BasketRepository())->deleteProductFromBasket($id); //Basket::deleteProductFromBasket($id);
+       // header('Location: http://' . $_SERVER['HTTP_HOST'] . '/basket/basket');
         $basket = (new BasketRepository())->getBasket();//Basket::getBasket();
         $response = [
             'total' => (new BasketRepository())->viewTotal(), //Basket::viewTotal(),
             'totalSumm' => (new BasketRepository())->getSumm($basket) //Basket::getSumm($basket),
         ];
         echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK);
-        //header('Location: http://' . $_SERVER['HTTP_SELF']);
+        //header('Location: http://' . $_SERVER['HTTP_HOST'] . '/basket/basket');
     }
-
 }

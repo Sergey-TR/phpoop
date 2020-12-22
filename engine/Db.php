@@ -49,7 +49,7 @@ class Db
     }
 
     public function execute($sql, $params = []) {
-        //var_dump($params);
+        //var_dump($sql, $params);
         return $this->query($sql, $params)->rowCount();
     }
     /*
@@ -66,7 +66,7 @@ class Db
     }
 
     public function queryAll($sql, $params = []) {
-        //var_dump($params, $sql);
+        //var_dump($sql);
             return $this->query($sql, $params)->fetchAll();;
     }
 
