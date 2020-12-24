@@ -42,7 +42,7 @@ class ProductController extends Controller
     {
         $name = (string)$_GET['name'];
         //$id = new Categories();
-        var_dump($name);
+        //var_dump($name);
         $id = (new CategoriesRepository())->getCategoryId($name); //$id->getCategoryId($name);
         //var_dump($id);
         //$catalogCategory = new Product();

@@ -8,6 +8,7 @@ use app\models\entities\Orders_Products;
 use app\models\repositories\BasketRepository;
 use app\models\repositories\Orders_ProductRepository;
 use app\models\repositories\OrdersRepository;
+use app\models\repositories\AdminRepository;
 
 class OrdersController extends Controller
 {
@@ -30,8 +31,14 @@ class OrdersController extends Controller
          $phone = $post['phone'];
          $comment = $post['comment'];
          $status = 'new';
+         $create = new \DateTime();
+         $update = new \DateTime();
 
-        $new = new Orders($idUser, $userName, $phone, $comment, $status);// -> save();
+        $updated_at = $update->format('Y-m-d H:i:s');
+        $created_at = $create->format('Y-m-d H:i:s');
+         //var_dump($updated_at);
+//die();
+        $new = new Orders($idUser, $userName, $phone, $comment, $status, $created_at, $updated_at);// -> save();
         //var_dump($new);
         $id = (new OrdersRepository())->save($new);
         if(!$id) {
@@ -61,35 +68,27 @@ for ($i = 0; $i < count($idOrder); $i++) {
     }
 
 
-    // А КАК СТАТУС ПОМЕНЯТЬ ЗАПУТАЛСЯ
+
     public function actionChangeStatusOrders() {
-//        //var_dump($_POST);
+
         foreach ($_POST as $key => $value) {
             $id = $key;
             $status = $value;
         }
+
         $order = (new OrdersRepository())->getOne($id);
-//        //var_dump($order);
-//        //$status = $_POST['status'];
-//        $idUser = $userName = $phone = $comment = "";
-//        $entity = [];
-//        foreach ($order as $key => $value) {
-//            if($key == 'status') {
-//
-//            }
-//        }
-////var_dump($status, $id);
-//        $changeStatus = new Orders($idUser, $userName, $phone, $comment, $status);
-//       // var_dump($changeStatus);
-////        $entity = [];
-////        foreach ($changeStatus as $key => $value) {
-////            if($key == 'id') {
-////
-////            }
-////            var_dump($key);
-////        }
-        (new OrdersRepository())->save($order);
-////header('Location: http://' . $_SERVER['HTTP_REFERER']);
+        $update = new \DateTime();
+        $updated_at = $update->format('Y-m-d H:i:s');
+        $order->status = $status;
+        $order->updated_at = $updated_at;
+
+       (new OrdersRepository())->save($order);
+
+        $orderUser = (new AdminRepository())->getOrderByUser($id);
+        echo $this->render('adminpage', [
+            'order' => $orderUser
+        ]);
+        //header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/viewOrderUser/');
     }
 
 }

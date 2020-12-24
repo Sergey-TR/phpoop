@@ -68,11 +68,13 @@ abstract class Repository implements IModel
         $change =[];
         foreach ($entity->props as $key => $value) {
             if($entity->props[$key] == true) {
+                //var_dump($entity->props[$key]);
                 $result += ["$key = :{$key}" => "$key = :{$key}"];
-                $change += [$key => $this->$key];
+                $change += [$key => $entity->$key];
                 $entity->props[$key] = false;
             }
         }
+        //var_dump($result, $change);
         $keys = array_keys($result);
         $row = implode(", ", $keys);
         $id = ['id' => $entity->id];

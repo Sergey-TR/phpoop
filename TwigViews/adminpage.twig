@@ -7,8 +7,18 @@
             <p>Покупатель: {{ order.0.login }}</p>
         </div>
         <div>
-            <p>Статус: {{ order.0.status }}</p>
+            <p style="color: darkred; font-weight: bold;">Статус заказа: {{ order.0.status }}</p>
         </div>
+        <form method="POST" action="/orders/changeStatusOrders">
+            <p>Изменить статус заказа</p>
+            <select name="{{ order.0.orderId }}">
+                <option  value="new">new</option>
+                <option  value="payed">payed</option>
+                <option  value="rejected">rejected</option>
+                <option  value="deleted">deleted</option>
+            </select>
+            <button type="submit">изменить</button>
+        </form>
     </div>
 
     <div style="display: flex; justify-content: space-around; border-bottom: 1px solid black">
