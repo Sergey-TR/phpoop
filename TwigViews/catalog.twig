@@ -1,0 +1,36 @@
+<div class="itemHeading">
+    <h2 class="fetured">Fetured Items</h2>
+    <p class="fetured_p">Shop for items based on what we featured in this week</p>
+</div>
+
+<div class="product-box center">
+{#    <?php foreach ($catalog as $item):?>#}
+    {% for item in catalog %}
+
+    <div class="product">
+        <a href="/product/card/?id={{ item.id }}">
+            <img class="product__img" src="/img/{{ item.images }}" alt="photo">
+        </a>
+        <div class="product__content">
+            <a href="#" class="product__name">{{ item.title }}</a>
+            <p class="product__price">${{ item.price }}
+                <img class="product__star" src="https://raw.githubusercontent.com/Sergey-TR/images/main/star.png"
+                     alt="star">
+            </p>
+        </div>
+        <input type="hidden" value="1" name="quantity">
+        <button data-id="{{ item.id }}" class="product__add" style="">Add to Cart</button>
+{#        <form class="form__add" method="POST" action="/basket/addBasket/" class="" style="/*position: absolute; top: 97px; left: 70px;*/">#}
+{#            <input type="hidden" value="{{ item.id }}" name="id">#}
+{#            <input type="hidden" value="1" name="quantity">#}
+{#            <img src="https://raw.githubusercontent.com/Sergey-TR/images/main/cartWhite.png" alt="">#}
+{#            <input class="product__add" type="submit" value="Add to Cart">#}
+{#        </form>#}
+    </div>
+ {% endfor %}
+{#    <?php endforeach; ?>#}
+</div>
+<div class="prod_bnt">
+    <a href="/product/catalog/?page={{ page }}" class="button_prod">next</a>
+</div>
+

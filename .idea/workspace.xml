@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3e96eb73-e34b-4047-b962-fc0b5e42bb31" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TwigViews/adminpage.twig" beforeDir="false" afterPath="$PROJECT_DIR$/TwigViews/adminpage.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/OrdersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/db.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Repository.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Repository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/entities/Orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/entities/Orders.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+        <option value="CSS File" />
+        <option value="composer.json" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1kpxbqT2wtGIaaA29L9EgdgImTB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sergey\Documents\OpenServer\domains\php.oop\models\entities" />
+      <recent name="C:\Users\Sergey\Documents\OpenServer\domains\php.oop\engine\validator" />
+      <recent name="C:\Users\Sergey\Documents\OpenServer\domains\php.oop\engine" />
+      <recent name="C:\Users\Sergey\Documents\OpenServer\domains\php.oop\engine\validators" />
+    </key>
+  </component>
+  <component name="RunManager" selected="PHP Script.BasketController.php">
+    <configuration name="index.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/index.php/public/index.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="BasketController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/controllers/BasketController.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.BasketController.php" />
+        <item itemvalue="JavaScript Debug.index.php" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3e96eb73-e34b-4047-b962-fc0b5e42bb31" name="Default Changelist" comment="" />
+      <created>1606411418702</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606411418702</updated>
+      <workItem from="1606411424467" duration="189000" />
+      <workItem from="1606468932993" duration="19846000" />
+      <workItem from="1606501071494" duration="240000" />
+      <workItem from="1606539312764" duration="14906000" />
+      <workItem from="1606628282545" duration="20357000" />
+      <workItem from="1606707674724" duration="34807000" />
+      <workItem from="1606811396193" duration="4035000" />
+      <workItem from="1606838696824" duration="595000" />
+      <workItem from="1606889026719" duration="1513000" />
+      <workItem from="1606890783912" duration="8102000" />
+      <workItem from="1606973399775" duration="9037000" />
+      <workItem from="1606982931255" duration="9461000" />
+      <workItem from="1607059820314" duration="18247000" />
+      <workItem from="1607080894569" duration="21697000" />
+      <workItem from="1607105726831" duration="32000" />
+      <workItem from="1607143728531" duration="15495000" />
+      <workItem from="1607237234262" duration="23714000" />
+      <workItem from="1607276601656" duration="124000" />
+      <workItem from="1607324997761" duration="36714000" />
+      <workItem from="1607402500813" duration="19757000" />
+      <workItem from="1607499349808" duration="1286000" />
+      <workItem from="1607501599254" duration="29899000" />
+      <workItem from="1607578758888" duration="21102000" />
+      <workItem from="1607685553448" duration="28695000" />
+      <workItem from="1607746713725" duration="13429000" />
+      <workItem from="1607836337313" duration="44946000" />
+      <workItem from="1607920829299" duration="50391000" />
+      <workItem from="1608006553955" duration="27389000" />
+      <workItem from="1608097357296" duration="4429000" />
+      <workItem from="1608103742234" duration="25318000" />
+      <workItem from="1608183249562" duration="21450000" />
+      <workItem from="1608215098173" duration="12550000" />
+      <workItem from="1608267496472" duration="43439000" />
+      <workItem from="1608351467586" duration="5739000" />
+      <workItem from="1608396973887" duration="9809000" />
+      <workItem from="1608438986007" duration="48388000" />
+      <workItem from="1608525919948" duration="34690000" />
+      <workItem from="1608614219046" duration="20546000" />
+      <workItem from="1608704426182" duration="879000" />
+      <workItem from="1608789904803" duration="14912000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
