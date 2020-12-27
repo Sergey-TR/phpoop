@@ -1,0 +1,51 @@
+<h2 style="text-align: center;">Ваш заказ</h2>
+<hr>
+<div class="center" style="display: flex; justify-content: space-around; margin-bottom: 15px; margin-top: 15px;">
+    <p style="width: 100px; font-size: 20px; font-weight: bolder;">Наименование</p>
+    <p style="width: 100px; font-size: 20px; font-weight: bolder; ">Количество</p>
+    <p style="width: 100px; font-size: 20px; font-weight: bolder;">Цена</p>
+    <p style="width: 100px; font-size: 20px; font-weight: bolder;">Сумма</p>
+</div>
+{% for value in basket %}
+
+<div class="cart-boxx center" style="margin-top: 10px; position: relative;">
+    <div class="cartsItem" id="{{ value.product.id }}" style=" display: flex;align-items: center; justify-content: space-around; border-bottom: 1px solid #9f9f9f">
+    <div class="cartsItem_name" style="width: 100px;">
+        <p class="cartsItem_acount" style="font-size: 18px; font-weight: bolder;">{{ value.product.title }}</p>
+    </div>
+    <div class="cartsItem_qty" style="width: 100px;">
+            <span class="qty_inp" id="count" style="font-size: 18px; font-weight: bolder;">{{ value.qty }}</span>
+    </div>
+    <div class="cartsItem_price" style="width: 100px;">
+        <span class="cartsItem_acount" style="font-size: 18px; font-weight: bolder;" >{{ value.product.price }}</span>
+    </div>
+    <div class="cartsItem_total" style="width: 100px;">
+        <span class="qtys_qty" style="font-size: 18px; font-weight: bolder;">{{ value.summ }}</span>
+    </div>
+    </div>
+</div>
+{% endfor %}
+<div class="center" style="margin: 15px;">
+    <p style="font-size: 20px; font-weight: bolder; text-align: center;">Общая сумма Вашего заказа : {{ totalSumm }}</p>
+</div>
+<p class="center" style="font-size: 20px; font-weight: bolder; margin: 15px; ">Контактная информация</p>
+<form class="center" style="display: flex;" method="post" action="/orders/check/">
+<p>
+    <label for="name" style="font-size: 18px; font-weight: bolder;">Имя :</label>
+    <input type="text" placeholder="Ваше имя" name="name" style="margin: 10px;
+                    height: 40px; border: 1px solid #f16d7f; min-width: 300px; outline: #9f9f9f; padding-left: 10px;">
+</p>
+    <p>
+        <label for="phone" style="font-size: 18px; font-weight: bolder;">Телефон :</label>
+        <input type="tel" placeholder="8-xxx-xxx-xxxx" name="phone" pattern="8-[0-9]{3}-[0-9]{3}-[0-9]{4}"style="margin: 10px;
+                    height: 40px; border: 1px solid #f16d7f; min-width: 300px; outline: #9f9f9f; padding-left: 10px;">
+    </p>
+    <p>
+        <label for="comment" style="font-size: 18px; font-weight: bolder;">Комментарий :</label>
+        <textarea type="text" placeholder="Ваше имя" name="comment" style="margin: 10px;
+                    height: 40px; border: 1px solid #f16d7f; min-width: 300px; outline: #9f9f9f; padding-left: 10px;">
+        </textarea>
+    </p>
+    <input type="hidden" name="status">
+    <button style="height: 75px; border: 1px solid #f16d7f; outline: #9f9f9f; cursor: pointer; width: 80px" type="submit" class="check" onclick="ok()" >оформить</button>
+</form>

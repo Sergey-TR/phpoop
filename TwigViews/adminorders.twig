@@ -1,0 +1,47 @@
+
+<div class="itemHeading">
+    <h2 class="fetured">Страница администратора</h2>
+    <p class="fetured_p">ЗАКАЗЫ ПОКУПАТЕЛЕЙ</p>
+</div>
+
+<div class="center">
+    <div style="display: flex; justify-content: space-around; border-bottom: 1px solid black">
+        <div style="display: flex; align-items: center; justify-content: center; width: 100px; height: 40px;">
+            <p>№ заказа</p>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; width: 200px; height: 40px;">
+            <p>Имя пользователя, логин</p>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>Электронная почта</p>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>Телефон</p>
+        </div>
+        <div style="width: 71px;"></div>
+    </div>
+    {% for value in orders %}
+    <div style="display: flex; justify-content: space-around; border-bottom: 1px solid gray; margin: 3px 0px;">
+        <div style="display: flex; align-items: center; justify-content: center; width: 100px; height: 40px;" >
+            <p style="width: 100px; height: 40px; display: flex; align-items: center;
+            justify-content: center;">{{ value.id }}</p>
+        </div>
+        <div  style="display: flex; align-items: center; justify-content: center; width: 200px; height: 40px;">
+            <p style="width: 200px; height: 40px; display: flex; align-items: center;
+            justify-content: center;">{{ value.login }}</p>
+        </div>
+        <div  style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p style="width: 150px; height: 40px; display: flex; align-items: center;
+            justify-content: center;">{{ value.email }}</p>
+        </div>
+        <div  style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p style="width: 150px; height: 40px; display: flex; align-items: center;
+            justify-content: center;">{{ value.phone }}</p>
+        </div>
+        <form method="post" action="/admin/viewOrderUser/">
+            <input type="hidden" value="{{ value.id }}" name="idOrder">
+            <button type="submit" style="height: 38px;">подробней</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>

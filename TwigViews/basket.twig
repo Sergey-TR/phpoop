@@ -1,0 +1,62 @@
+<div class="itemHeading">
+    <h2 class="fetured">BASKET</h2>
+    {% if basket is empty %}
+    <h2 class="fetured">Ваша корзина пуста</h2>
+    {% endif %}
+</div>
+{% if basket is not empty %}
+<div class="cart-box center" style="margin-top: 30px; position: relative;">
+{#    <?php foreach ($basket as $value) { ?>#}
+
+    {% for value in basket %}
+{#    <form>#}
+        <div class="cartItem" id="{{ value.product.id }}">
+            <div class="cartItem_img">
+                <img class="imgs" src="/img/{{ value.product.images }}" alt="photo">
+            </div>
+            <div class="cartItem_name">
+                <p class="cartItem_acount">{{ value.product.title }}</p>
+            </div>
+            <div class="cartItem_price">
+                <span class="cartItem_acount">{{ value.product.price }}</span>
+            </div>
+            <div class="cartItem_qty">
+                <form class="changeItem" method="POST" action="/basket/changeBasket">
+                    <button type="submit" class="qty_btn" value="{{ value.product.id }}" name="minus">-</button>
+                    <span class="qty_inp" id="count">{{ value.qty }}</span>
+{#                <input type="number" class="qty_inp" min="1" value="{{ value.qty }}" >#}
+                    <button type="submit" class="qty_btn" value="{{ value.product.id }}" name="plus">+</button>
+                </form>
+{#            <button type="submit" class="minus_btn" data-incr="minus" id="{{ value.product.id }}">-</button>#}
+{#                <span class="qty_inp" id="count">{{ value.qty }}</span>#}
+{#            <button type="submit" class="plus_btn" data-incr="plus" id="{{ value.product.id }}">+</button>#}
+            </div>
+            <div class="cartItem_total">
+                <span class="qty_qty" >{{ value.summ }}</span>
+            </div>
+            <div class="cartItem_clear">
+
+                <button type="submit" class="clear_btn" name="reset" data-id="{{ value.product.id }}">X</button>
+
+            </div>
+        </div>
+{#    <?php }  ?>#}
+    {% endfor %}
+        <div style="display: flex; margin-top: 15px; align-items: center; justify-content: flex-end;">
+            <div>
+                <p style="font-weight: bolder;">СУММА ВАШЕГО ЗАКАЗА:</p>
+            </div>
+            <div style="width: 100px; text-align: center; font-weight: bold; font-size: 20px;">
+                <span id="totalSumm">{{ totalSumm }}</span>
+            </div>
+            <form method="post" action="/orders/add">
+                <button type="submit" style="width: 120px; height: 60px; background-color: #f16d7f; color: white;
+                                 border: none; font-size: 20px; cursor: pointer; margin-right: 20px;
+                                 ">Оформить заказ</button>
+            </form>
+        </div>
+{#    </form>#}
+</div>
+{% endif %}
+
+

@@ -1,0 +1,31 @@
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 40px; flex-direction: column;">
+    <h2 style="color: #f16d7f; margin-bottom: 10px;">Войдите в аккаунт или зарегистрируйтесь</h2>
+    {% if error %}
+        <i style="color: #f16d7f">{{ error }}</i>
+    {% endif %}
+    <form method="post" action="/auth/in">
+                <input type="hidden" name="csrf_token" value="dsfhjksdfjksjgfdmlhgkjd">
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <label for="login">LOGIN</label>
+            <input type="text" placeholder="login" name="login" style="margin: 10px;
+                    height: 40px; border: 1px solid #f16d7f; min-width: 300px; outline: #9f9f9f; padding-left: 10px;">
+            <i style="color: #f16d7f">{{ errors.login }}</i>
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <label for="password">PASSWORD</label>
+            <input type="password" placeholder="your password" name="password" style="margin: 10px;
+                    height: 40px; border: 1px solid #f16d7f; min-width: 300px; outline: #9f9f9f; padding-left: 10px;">
+            <i style="color: #f16d7f">{{ errors.password }}</i>
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <button type="submit" style="height: 40px; min-width: 300px; border: 1px solid #f16d7f; margin: 10px; cursor: pointer;">LOG IN</button>
+        </div>
+
+    </form>
+    <a href="/auth/registration/" style="cursor: pointer; color: #f16d7f;
+    font-size: 18px;
+    font-weight: bolder;
+    margin-top: 15px;">Регистрация</a>
+</div>

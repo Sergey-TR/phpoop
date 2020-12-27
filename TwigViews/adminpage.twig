@@ -1,0 +1,54 @@
+<div class="center" style="display: flex; flex-direction: column;">
+    <div>
+        <div>
+            <p>№ заказа: {{ order.0.orderId }}</p>
+        </div>
+        <div>
+            <p>Покупатель: {{ order.0.login }}</p>
+        </div>
+        <div>
+            <p style="color: darkred; font-weight: bold;">Статус заказа: {{ order.0.status }}</p>
+        </div>
+        <form method="POST" action="/orders/changeStatusOrders">
+            <p>Изменить статус заказа</p>
+            <select name="{{ order.0.orderId }}">
+                <option  value="new">new</option>
+                <option  value="payed">payed</option>
+                <option  value="rejected">rejected</option>
+                <option  value="deleted">deleted</option>
+            </select>
+            <button type="submit">изменить</button>
+        </form>
+    </div>
+
+    <div style="display: flex; justify-content: space-around; border-bottom: 1px solid black">
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>Наименование</p>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>Количество</p>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>Цена</p>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>Сумма</p>
+        </div>
+    </div>
+    {% for value in order %}
+    <div style="display: flex; justify-content: space-around; border-bottom: 1px solid gray; margin: 3px 0px;">
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>{{ value.title }}</p>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>{{ value.total }}</p>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>{{ value.price }}</p>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; width: 150px; height: 40px;">
+            <p>{{ value.total  *  value.price }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
