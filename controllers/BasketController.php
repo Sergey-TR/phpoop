@@ -10,6 +10,7 @@ use app\models\Repository;
 use app\models\entities\Product;
 use app\models\entities\Basket;
 use app\engine\Request;
+use app\engine\Session;
 
 class BasketController extends Controller
 {
@@ -26,13 +27,19 @@ class BasketController extends Controller
 
     }
 
-    public function actionBasket() {
-
+    public function actionChangeBasket() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $change = $_POST;
             (new BasketRepository())->changeCountProduct($change); //Basket::changeCountProduct($change);
             $basket = (new BasketRepository())->getBasket(); //Basket::getBasket();
+            echo $this->render('basket', [
+                'basket' => $basket,
+                'totalSumm' => (new BasketRepository())->getSumm($basket) //Basket::getSumm($basket)
+            ]);
         }
+    }
+
+    public function actionBasket() {
         if (!empty($_SESSION['basketAdd'])) {
             $basket = (new BasketRepository())->getBasket(); //Basket::getBasket();
             echo $this->render('basket', [

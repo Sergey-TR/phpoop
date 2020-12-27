@@ -21,7 +21,7 @@
                 <span class="cartItem_acount">{{ value.product.price }}</span>
             </div>
             <div class="cartItem_qty">
-                <form class="changeItem" method="POST" action="/basket/basket">
+                <form class="changeItem" method="POST" action="/basket/changeBasket">
                     <button type="submit" class="qty_btn" value="{{ value.product.id }}" name="minus">-</button>
                     <span class="qty_inp" id="count">{{ value.qty }}</span>
 {#                <input type="number" class="qty_inp" min="1" value="{{ value.qty }}" >#}
